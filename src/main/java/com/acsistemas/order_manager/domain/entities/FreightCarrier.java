@@ -1,5 +1,6 @@
 package com.acsistemas.order_manager.domain.entities;
 
+import com.acsistemas.order_manager.shared.dtos.freightCarrier.FreightCarrierCreateDto;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -34,4 +35,10 @@ public class FreightCarrier {
 
     @UpdateTimestamp
     private LocalDateTime updatedAt;
+
+    public FreightCarrier(FreightCarrierCreateDto dto) {
+        this.name = dto.name();
+        this.cnpj = dto.cnpj();
+        this.contactPhone = dto.contactPhone();
+    }
 }
