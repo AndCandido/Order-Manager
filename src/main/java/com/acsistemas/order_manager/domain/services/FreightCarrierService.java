@@ -3,6 +3,7 @@ package com.acsistemas.order_manager.domain.services;
 import com.acsistemas.order_manager.config.exceptions.ResourceNotFoundException;
 import com.acsistemas.order_manager.domain.entities.FreightCarrier;
 import com.acsistemas.order_manager.domain.repositories.IFreightCarrierRepository;
+import com.acsistemas.order_manager.shared.dtos.api.ResourceIdResponseDto;
 import com.acsistemas.order_manager.shared.dtos.freightCarrier.FreightCarrierCreateDto;
 import com.acsistemas.order_manager.shared.dtos.freightCarrier.FreightCarrierResponseDto;
 import lombok.RequiredArgsConstructor;
@@ -15,9 +16,10 @@ import java.util.UUID;
 public class FreightCarrierService {
     private final IFreightCarrierRepository freightCarrierRepository;
 
-    public void saveFreightCarrier(FreightCarrierCreateDto freightCarrierDto) {
+    public ResourceIdResponseDto<UUID> saveFreightCarrier(FreightCarrierCreateDto freightCarrierDto) {
         FreightCarrier freightCarrierToSave = new FreightCarrier(freightCarrierDto);
         freightCarrierRepository.save(freightCarrierToSave);
+        return new ResourceIdResponseDto<>(freightCarrierToSave.getId());
     }
 
     public FreightCarrierResponseDto getFreightCarrierByIdOrThrow(UUID freightCarrierId) {

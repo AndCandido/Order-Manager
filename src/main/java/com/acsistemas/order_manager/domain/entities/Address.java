@@ -2,8 +2,14 @@ package com.acsistemas.order_manager.domain.entities;
 
 import com.acsistemas.order_manager.shared.dtos.address.AddressCreateDto;
 import jakarta.persistence.Embeddable;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Embeddable
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
 public class Address {
     private String city;
     private String uf;

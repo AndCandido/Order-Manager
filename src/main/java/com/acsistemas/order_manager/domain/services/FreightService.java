@@ -5,6 +5,7 @@ import com.acsistemas.order_manager.domain.entities.Address;
 import com.acsistemas.order_manager.domain.entities.Freight;
 import com.acsistemas.order_manager.domain.entities.FreightCarrier;
 import com.acsistemas.order_manager.domain.repositories.IFreightRepository;
+import com.acsistemas.order_manager.shared.dtos.api.ResourceIdResponseDto;
 import com.acsistemas.order_manager.shared.dtos.freight.FreightCreateDto;
 import com.acsistemas.order_manager.shared.dtos.freight.FreightResponseDto;
 import lombok.RequiredArgsConstructor;
@@ -28,11 +29,12 @@ public class FreightService {
         return new FreightResponseDto(freightFound);
     }
 
-    public void saveFreight(FreightCreateDto freightCreateDto) {
+    public ResourceIdResponseDto<UUID> saveFreight(FreightCreateDto freightCreateDto) {
         var freightCarrierId = freightCreateDto.freightCarrierId();
         FreightCarrier freightCarrier = freightCarrierService.findFreightCarrierByIdOrThrow(freightCarrierId);
         Address deliveryAddress = new Address(freightCreateDto.deliveryAddress());
         Freight freightToSave = new Freight(freightCreateDto, freightCarrier, deliveryAddress);
         freightRepository.save(freightToSave);
+        return new ResourceIdResponseDto<>(freightToSave.getId());
     }
 }
