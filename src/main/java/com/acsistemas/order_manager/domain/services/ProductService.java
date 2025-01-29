@@ -6,19 +6,19 @@ import com.acsistemas.order_manager.domain.entities.Product;
 import com.acsistemas.order_manager.domain.repositories.IProductRepository;
 import com.acsistemas.order_manager.shared.dtos.product.ProductCreateDto;
 import com.acsistemas.order_manager.shared.dtos.product.ProductResponseDto;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class ProductService {
-    private IProductRepository productRepository;
-    private FreightService freightService;
+    private final IProductRepository productRepository;
+    private final FreightService freightService;
 
     public void saveProduct(ProductCreateDto productCreateDto) {
-        Freight freightFound = freightService.getFreightByIdOrThrow(productCreateDto.freightId());
+        Freight freightFound = freightService.findFreightByIdOrThrow(productCreateDto.freightId());
         Product productToSave = new Product(productCreateDto, freightFound);
         productRepository.save(productToSave);
     }
