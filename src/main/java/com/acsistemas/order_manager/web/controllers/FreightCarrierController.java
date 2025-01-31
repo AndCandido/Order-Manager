@@ -4,6 +4,7 @@ import com.acsistemas.order_manager.domain.services.FreightCarrierService;
 import com.acsistemas.order_manager.shared.dtos.api.ResourceIdResponseDto;
 import com.acsistemas.order_manager.shared.dtos.freightCarrier.FreightCarrierCreateDto;
 import com.acsistemas.order_manager.shared.dtos.freightCarrier.FreightCarrierResponseDto;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,7 +17,7 @@ public class FreightCarrierController {
     private final FreightCarrierService freightCarrierService;
 
     @PostMapping
-    public ResourceIdResponseDto<UUID> saveFreightCarrier(@RequestBody FreightCarrierCreateDto freightCarrierCreateDto) {
+    public ResourceIdResponseDto<UUID> saveFreightCarrier(@Valid @RequestBody FreightCarrierCreateDto freightCarrierCreateDto) {
         return freightCarrierService.saveFreightCarrier(freightCarrierCreateDto);
     }
 

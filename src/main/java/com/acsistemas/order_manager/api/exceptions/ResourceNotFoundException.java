@@ -1,4 +1,4 @@
-package com.acsistemas.order_manager.config.exceptions;
+package com.acsistemas.order_manager.api.exceptions;
 
 public class ResourceNotFoundException extends RuntimeException {
     public ResourceNotFoundException(String message) {

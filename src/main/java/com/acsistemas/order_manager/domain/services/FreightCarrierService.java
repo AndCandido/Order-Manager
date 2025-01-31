@@ -1,6 +1,6 @@
 package com.acsistemas.order_manager.domain.services;
 
-import com.acsistemas.order_manager.config.exceptions.ResourceNotFoundException;
+import com.acsistemas.order_manager.api.exceptions.ResourceNotFoundException;
 import com.acsistemas.order_manager.domain.entities.FreightCarrier;
 import com.acsistemas.order_manager.domain.repositories.IFreightCarrierRepository;
 import com.acsistemas.order_manager.shared.dtos.api.ResourceIdResponseDto;

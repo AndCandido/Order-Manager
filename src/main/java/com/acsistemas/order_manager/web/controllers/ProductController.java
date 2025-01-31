@@ -4,6 +4,7 @@ import com.acsistemas.order_manager.domain.services.ProductService;
 import com.acsistemas.order_manager.shared.dtos.api.ResourceIdResponseDto;
 import com.acsistemas.order_manager.shared.dtos.product.ProductCreateDto;
 import com.acsistemas.order_manager.shared.dtos.product.ProductResponseDto;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,7 +17,7 @@ public class ProductController {
     private final ProductService productService;
 
     @PostMapping
-    public ResourceIdResponseDto<UUID> saveProduct(@RequestBody ProductCreateDto productCreateDto) {
+    public ResourceIdResponseDto<UUID> saveProduct(@Valid @RequestBody ProductCreateDto productCreateDto) {
         return productService.saveProduct(productCreateDto);
     }
 
