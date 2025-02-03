@@ -9,7 +9,8 @@ public record FreightCarrierResponseDto(
     UUID id,
     String name,
     String cnpj,
-    String contactPhone,
+    String phone,
+    String email,
     LocalDateTime createdAt,
     LocalDateTime updatedAt
 ) {
@@ -18,7 +19,8 @@ public record FreightCarrierResponseDto(
             freightCarrier.getId(),
             freightCarrier.getName(),
             freightCarrier.getCnpj(),
-            freightCarrier.getContactPhone(),
+            freightCarrier.getPhone(),
+            freightCarrier.getEmail(),
             freightCarrier.getCreatedAt(),
             freightCarrier.getUpdatedAt()
         );

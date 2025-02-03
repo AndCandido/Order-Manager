@@ -25,7 +25,8 @@ public class FreightCarrier {
 
     private String name;
     private String cnpj;
-    private String contactPhone;
+    private String phone;
+    private String email;
 
     @OneToMany
     private List<Freight> pendingFreights;
@@ -39,6 +40,7 @@ public class FreightCarrier {
     public FreightCarrier(FreightCarrierCreateDto dto) {
         this.name = dto.name();
         this.cnpj = dto.cnpj();
-        this.contactPhone = dto.contactPhone();
+        this.phone = dto.phone();
+        this.email = dto.email();
     }
 }
