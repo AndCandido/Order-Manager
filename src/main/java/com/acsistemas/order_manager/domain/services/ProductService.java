@@ -6,10 +6,12 @@ import com.acsistemas.order_manager.domain.entities.Product;
 import com.acsistemas.order_manager.domain.repositories.IProductRepository;
 import com.acsistemas.order_manager.shared.dtos.api.ResourceIdResponseDto;
 import com.acsistemas.order_manager.shared.dtos.product.ProductCreateDto;
+import com.acsistemas.order_manager.shared.dtos.product.ProductMinResponseDto;
 import com.acsistemas.order_manager.shared.dtos.product.ProductResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -33,5 +35,9 @@ public class ProductService {
     private Product findProductByIdOrThrow(UUID id) {
         return productRepository.findById(id)
             .orElseThrow(() -> new ResourceNotFoundException("Product Not Found"));
+    }
+
+    public List<ProductMinResponseDto> getAllProducts() {
+        return productRepository.findAll().stream().map(ProductMinResponseDto::new).toList();
     }
 }

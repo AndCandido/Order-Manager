@@ -5,10 +5,12 @@ import com.acsistemas.order_manager.domain.entities.FreightCarrier;
 import com.acsistemas.order_manager.domain.repositories.IFreightCarrierRepository;
 import com.acsistemas.order_manager.shared.dtos.api.ResourceIdResponseDto;
 import com.acsistemas.order_manager.shared.dtos.freightCarrier.FreightCarrierCreateDto;
+import com.acsistemas.order_manager.shared.dtos.freightCarrier.FreightCarrierMinResponseDto;
 import com.acsistemas.order_manager.shared.dtos.freightCarrier.FreightCarrierResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -30,5 +32,9 @@ public class FreightCarrierService {
     public FreightCarrier findFreightCarrierByIdOrThrow(UUID freightCarrierId) {
         return freightCarrierRepository.findById(freightCarrierId)
             .orElseThrow(() -> new ResourceNotFoundException("Freight Carrier Not Found"));
+    }
+
+    public List<FreightCarrierMinResponseDto> getAllFreightCarriers() {
+        return freightCarrierRepository.findAll().stream().map(FreightCarrierMinResponseDto::new).toList();
     }
 }

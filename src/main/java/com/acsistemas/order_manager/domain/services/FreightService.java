@@ -7,10 +7,12 @@ import com.acsistemas.order_manager.domain.entities.FreightCarrier;
 import com.acsistemas.order_manager.domain.repositories.IFreightRepository;
 import com.acsistemas.order_manager.shared.dtos.api.ResourceIdResponseDto;
 import com.acsistemas.order_manager.shared.dtos.freight.FreightCreateDto;
+import com.acsistemas.order_manager.shared.dtos.freight.FreightMinResponseDto;
 import com.acsistemas.order_manager.shared.dtos.freight.FreightResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -36,5 +38,9 @@ public class FreightService {
         Freight freightToSave = new Freight(freightCreateDto, freightCarrier, deliveryAddress);
         freightRepository.save(freightToSave);
         return new ResourceIdResponseDto<>(freightToSave.getId());
+    }
+
+    public List<FreightMinResponseDto> getAllFreights() {
+        return freightRepository.findAll().stream().map(FreightMinResponseDto::new).toList();
     }
 }
